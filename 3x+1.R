@@ -27,5 +27,5 @@ plot(sequence$N~sequence$s,
      xlab="iteration",
      ylab="n",
      xlim=c(min(sequence$s),max(sequence$s)),
-     main=as.character());lines(sequence$N~sequence$s); points(sequence$N[1]~sequence$s[1],col="blue")
+     main=paste("Start = ",as.character(sequence$N[1])));lines(sequence$N~sequence$s); points(sequence$N[1]~sequence$s[1],col="blue")
 
