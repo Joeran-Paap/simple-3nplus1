@@ -1,10 +1,9 @@
 #rm(list=ls()) #clear workspace
-N <- 89                             #starting value
-n <- list()                         #create placeholder for list of sequence
-s <- 0                              #set up iteration counter
-n[[length(n)+1]] = list(s = s, N=N) #ad intial value to list, defined as iteration zero
 
-
+three_n_plus_one <- function(N){                            #N = starting value
+  n <- list()                         #create placeholder for list of sequence
+  s <- 0                              #set up iteration counter
+  n[[length(n)+1]] = list(s = s, N=N)
 repeat{                         # start of loop        
   s <- s+1                      # iteration counter
   if(N %% 2 ==0){ N <- N/2      # if number is even, divide by 2
@@ -19,13 +18,15 @@ repeat{                         # start of loop
     break                       # i.e., if last value = 1, repeat loop is entering the sequence: 1 -> 4 -> 2 -> 1
   }
 }
+  return(dplyr::bind_rows(n))   #return sequence as data frame
+}
 
-sequence <- dplyr::bind_rows(n) #store sequence as data frame
-
+sequence <- three_n_plus_one(9)
 #simple plot of sequence
 plot(sequence$N~sequence$s,
      xlab="iteration",
      ylab="n",
      xlim=c(min(sequence$s),max(sequence$s)),
      main=paste("Start = ",as.character(sequence$N[1])));lines(sequence$N~sequence$s); points(sequence$N[1]~sequence$s[1],col="blue")
+
 
